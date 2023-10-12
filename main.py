@@ -1,3 +1,9 @@
+from transformers import pipeline, AutoModelForSequenceClassification, AutoTokenizer
+
+model_name = "roberta-large-mnli"
+model = AutoModelForSequenceClassification.from_pretrained(model_name)
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+
 import re
 
 soc_lbl = 'Social: related to community outreach, social media, health and medical, education and schools, housing, religious, poltical, and information campaign initiatives by a foreign actor'
