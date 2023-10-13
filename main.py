@@ -58,10 +58,19 @@ def score_segment(segment):
   label_scores[short_labels[category]] += len(segment)
   
 def score_document(document):
-  segments =re.split(r'\n|\.',document)
-  segments = [seg.strip() for seg in segments]
-  segments = [seg for seg in segments if len(seg)>0]
-  for segment in segments:
-    score_segment(segment)
+  segments = dict()
+  segs =re.split(r'\n|\.',document)
+  segs = [seg.strip() for seg in segs]
+  segs = [seg for seg in segs if len(seg)>0]
 
-score_document(document)
+
+  for seg in segs:
+    segments[seg] = dict()
+    segments[seg]['length'] = len(seg)
+    segments[seg]['category'] =  score_segment(seg)
+  
+  return segments
+
+segments = score_document(document)
+
+
